@@ -1,6 +1,6 @@
 app-id: com.tencent.wemeet
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
 separate-locales: false
 command: wemeetapp
