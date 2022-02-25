@@ -5,15 +5,15 @@ sdk: org.freedesktop.Sdk
 separate-locales: false
 command: wemeetapp
 finish-args:
-- --share=ipc
-- --share=network
-- --socket=x11
-- --socket=pulseaudio
-- --device=all
-- --talk-name=org.freedesktop.Notifications
-- --talk-name=org.kde.StatusNotifierWatcher
-- --env=XDG_SESSION_TYPE=x11
-- --env=QT_QPA_PLATFORM=xcb
+  - --share=ipc
+  - --share=network
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=all
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --env=XDG_SESSION_TYPE=x11
+  - --env=QT_QPA_PLATFORM=xcb
 
 modules:
   - name: wemeet
@@ -24,8 +24,8 @@ modules:
       - install -D apply_extra -t /app/bin
       - install -D /usr/bin/desktop-file-edit -t /app/bin/
       - install -D /usr/bin/ar -t /app/bin
-      - ARCH_TRIPLE=$(gcc --print-multiarch) &&
-        install -D /usr/lib/${ARCH_TRIPLE}/libbfd-*.so -t /app/lib
+      - ARCH_TRIPLE=$(gcc --print-multiarch) && install -D /usr/lib/${ARCH_TRIPLE}/libbfd-*.so
+        -t /app/lib
     sources:
       - type: script
         dest-filename: apply_extra
@@ -34,15 +34,11 @@ modules:
           - tar -xf data.* && rm *.deb data.*
           - mv usr export
           - cp -a opt/wemeet/icons export/share/
-          - ls -d -1 export/share/icons/hicolor/* | 
-            xargs -i cp -a {}/{mimetypes,apps}
+          - ls -d -1 export/share/icons/hicolor/* | xargs -i cp -a {}/{mimetypes,apps}
           - FLATPAK_ID=com.tencent.wemeet
-          - desktop-file-edit 
-            --set-icon="$FLATPAK_ID" 
-            --set-key="Exec" --set-value="wemeetapp %U" 
-            export/share/applications/*.desktop
-          - rename "wemeetapp" "$FLATPAK_ID" 
-            export/share/icons/hicolor/*/*/*.png 
+          - desktop-file-edit --set-icon="$FLATPAK_ID" --set-key="Exec" --set-value="wemeetapp
+            %U" export/share/applications/*.desktop
+          - rename "wemeetapp" "$FLATPAK_ID" export/share/icons/hicolor/*/*/*.png
             export/share/applications/*.desktop
 
       - type: script
@@ -57,12 +53,12 @@ modules:
       - type: extra-data
         filename: wemeet.deb
         only-arches: [x86_64]
-        url: https://updatecdn.meeting.qq.com/cos/196cdf1a3336d5dca56142398818545f/TencentMeeting_0300000000_2.8.0.1_x86_64.publish.deb
-        sha256: 2d63cf2c367b6158b137ec5af85a89a3974cf915bf01933d9f0db3f5d8a02317
-        size: 104155998
+        url: https://updatecdn.meeting.qq.com/cos/3cdd365cd90f221fb345ab73c4746e1f/TencentMeeting_0300000000_2.8.0.3_x86_64_default.publish.deb
+        sha256: efa066e0f688a3b00fc1804a597a75e2ea7e3d74be128ecd2dc58ce90da7859f
+        size: 104355440
         x-checker-data:
           type: json
-          url: 'https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000.beta%22,%22platform%22:%22linux%22,%22arch%22:%22x86_64%22}]&nonce=123456789abcdefg'
+          url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000.beta%22,%22platform%22:%22linux%22,%22arch%22:%22x86_64%22}]&nonce=123456789abcdefg
           version-query: .["info-list"][0].version
           url-query: .["info-list"][0].url
-        
+
