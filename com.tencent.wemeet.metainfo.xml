@@ -21,13 +21,13 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://wemeet.tencent.com/packages/meeting-public/first-page/web/bg_2_2x.png</image>
+      <image type="source">https://meeting.tencent.com/packages/meeting-public/first-page/web/bg_2_2x.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://wemeet.tencent.com/packages/meeting-public/first-page/web/bg_3_2x.png</image>
+      <image type="source">https://meeting.tencent.com/packages/meeting-public/first-page/web/bg_3_2x.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://wemeet.tencent.com/packages/meeting-public/first-page/web/tabs_3_2x.png</image>
+      <image type="source">https://meeting.tencent.com/packages/meeting-public/first-page/web/tabs_3_2x.png</image>
     </screenshot>
   </screenshots>
   <releases>
@@ -35,7 +35,7 @@
     <release version="2.8.0.3" date="2022-02-25"/>
     <release version="2.8.0.1" date="2021-09-13" type="stable"/>
   </releases>
-  <url type="homepage">https://wemeet.tencent.com/</url>
+  <url type="homepage">https://meeting.tencent.com/</url>
   <categories>
     <category>Office</category>
     <category>Chat</category>
