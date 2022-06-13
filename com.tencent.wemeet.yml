@@ -14,6 +14,7 @@ finish-args:
   - --talk-name=org.kde.StatusNotifierWatcher
   - --env=XDG_SESSION_TYPE=x11
   - --env=QT_QPA_PLATFORM=xcb
+  - --unset-env=WAYLAND_DISPLAY
 
 modules:
   - name: wemeet
@@ -44,7 +45,6 @@ modules:
       - type: script
         dest-filename: wemeetapp.sh
         commands:
-          - unset WAYLAND_DISPLAY
           - exec /app/extra/opt/wemeet/wemeetapp.sh "$@"
 
       - type: file
@@ -53,12 +53,12 @@ modules:
       - type: extra-data
         filename: wemeet.deb
         only-arches: [x86_64]
-        url: https://updatecdn.meeting.qq.com/cos/3cdd365cd90f221fb345ab73c4746e1f/TencentMeeting_0300000000_2.8.0.3_x86_64_default.publish.deb
-        sha256: efa066e0f688a3b00fc1804a597a75e2ea7e3d74be128ecd2dc58ce90da7859f
-        size: 104355440
+        url: https://updatecdn.meeting.qq.com/MTZlNjg4ZjctOTAwMS00NDg2LWE3ZjMtMjNhZjBmODk3ZTIz/TencentMeeting_0300000000_3.8.0.2_x86_64_default.publish.deb
+        sha256: 6705c2280f9ae1594ea21c634a0d740a7e33300fdcda7fb98387ca8c0456b169
+        size: 207248144
         x-checker-data:
           type: json
-          url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000.beta%22,%22platform%22:%22linux%22,%22arch%22:%22x86_64%22}]&nonce=123456789abcdefg
+          url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22linux%22,%22arch%22:%22x86_64%22}]&nonce=123456789abcdefg
           version-query: .["info-list"][0].version
           url-query: .["info-list"][0].url
 
