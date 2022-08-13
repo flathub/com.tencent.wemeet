@@ -41,6 +41,7 @@ modules:
             %U" export/share/applications/*.desktop
           - rename "wemeetapp" "$FLATPAK_ID" export/share/icons/hicolor/*/*/*.png
             export/share/applications/*.desktop
+          - echo '{}' > opt/wemeet/bin/xcast.conf
 
       - type: script
         dest-filename: wemeetapp.sh
@@ -53,12 +54,12 @@ modules:
       - type: extra-data
         filename: wemeet.deb
         only-arches: [x86_64]
-        url: https://updatecdn.meeting.qq.com/MTZlNjg4ZjctOTAwMS00NDg2LWE3ZjMtMjNhZjBmODk3ZTIz/TencentMeeting_0300000000_3.8.0.2_x86_64_default.publish.deb
-        sha256: 6705c2280f9ae1594ea21c634a0d740a7e33300fdcda7fb98387ca8c0456b169
-        size: 207248144
+        url: https://updatecdn.meeting.qq.com/OTRhY2YwZTUtMzE5Ni00NDQyLTg0MTMtOTBjYzQzNzcxYTQz/TencentMeeting_0300000000_3.9.0.1_x86_64_default.publish.deb
+        sha256: 835b18b933f4454ea051bced3feaca4758b859392f8dd48f50420a3c4aad9827
+        size: 174699940
         x-checker-data:
           type: json
-          url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22linux%22,%22arch%22:%22x86_64%22}]&nonce=123456789abcdefg
+          url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22linux%22,%22arch%22:%22x86_64%22,%22decorators%22:[%22deb%22]}]&nonce=123456789abcdefg
           version-query: .["info-list"][0].version
           url-query: .["info-list"][0].url
 
