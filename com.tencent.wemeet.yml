@@ -33,7 +33,7 @@ modules:
         dest-filename: apply_extra
         commands:
           - bsdtar --to-stdout -xf wemeet.deb data.* | bsdtar -xf -
-          - rm *.deb data.*
+          - rm wemeet.deb
           - echo '{}' > opt/wemeet/bin/xcast.conf
 
       - type: script
