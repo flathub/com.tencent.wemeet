@@ -53,12 +53,24 @@ modules:
       - type: extra-data
         filename: wemeet.deb
         only-arches: [x86_64]
-        url: https://updatecdn.meeting.qq.com/cos/bb4001c715553579a8b3e496233331d4/TencentMeeting_0300000000_3.19.0.401_x86_64_default.publish.deb
-        sha256: 54dfeb367db3036d65e814b32e9439065f5707686b30521ad28d1ccb6bdd2f1f
-        size: 181147056
+        url: https://updatecdn.meeting.qq.com/cos/fcdc2a010a25561a4d23e168b677b493/TencentMeeting_0300000000_3.19.1.400_x86_64_default.publish.deb
+        sha256: 77931761d1c710c294735de8ea61e3a21783f9bec3ce48c58dc841755d8d08be
+        size: 161153760
         x-checker-data:
           type: json
           url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22linux%22,%22arch%22:%22x86_64%22,%22decorators%22:[%22deb%22]}]&nonce=123456789abcdefg
           version-query: .["info-list"][0].version
           url-query: .["info-list"][0].url
+          is-main-source: true
 
+      - type: extra-data
+        filename: wemeet.deb
+        only-arches: [aarch64]
+        url: https://updatecdn.meeting.qq.com/cos/73805834f20680c804310bd0e80f269d/TencentMeeting_0300000000_3.19.1.400_arm64_default.publish.deb
+        sha256: e44f9b9e0cb5110cf877d68ca83f93557e87bca4a3424964f3056bd5b36817c2
+        size: 145309964
+        x-checker-data:
+          type: json
+          url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22linux%22,%22arch%22:%22aarch64%22,%22decorators%22:[%22deb%22]}]&nonce=123456789abcdefg
+          version-query: .["info-list"][0].version
+          url-query: .["info-list"][0].url
