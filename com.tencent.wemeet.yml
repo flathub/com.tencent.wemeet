@@ -53,7 +53,7 @@ modules:
       - type: extra-data
         filename: wemeet.deb
         only-arches: [x86_64]
-        url: https://updatecdn.meeting.qq.com/cos/fcdc2a010a25561a4d23e168b677b493/TencentMeeting_0300000000_3.19.1.400_x86_64_default.publish.deb
+        url: https://updatecdn.meeting.qq.com/cos/fcdc2a010a25561a4d23e168b677b493/TencentMeeting_0300000000_3.19.1.400_x86_64_default.publish.officialwebsite.deb
         sha256: 77931761d1c710c294735de8ea61e3a21783f9bec3ce48c58dc841755d8d08be
         size: 161153760
         x-checker-data:
