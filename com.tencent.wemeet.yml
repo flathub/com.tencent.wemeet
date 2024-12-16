@@ -1,7 +1,7 @@
 app-id: com.tencent.wemeet
-runtime: org.freedesktop.Platform
-runtime-version: "24.08"
-sdk: org.freedesktop.Sdk
+runtime: org.gnome.Platform
+runtime-version: "47"
+sdk: org.gnome.Sdk
 separate-locales: false
 rename-icon: wemeet
 rename-desktop-file: wemeet.desktop
@@ -10,15 +10,81 @@ finish-args:
   - --share=ipc
   - --share=network
   - --socket=x11
+  - --socket=wayland
   - --socket=pulseaudio
   - --device=all
+  - --talk-name=org.gnome.Shell.Screencast
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
   - --env=XDG_SESSION_TYPE=x11
   - --env=QT_QPA_PLATFORM=xcb
+  - --env=LD_PRELOAD=/app/lib/wemeet/libhook.so
   - --unset-env=WAYLAND_DISPLAY
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /lib/debug
+  - /share/doc
+  - /share/man
 
 modules:
+  - name: libportal
+    buildsystem: meson
+    config-opts:
+      - -Dbackend-gtk3=disabled
+      - -Dbackend-gtk4=enabled
+      - -Dbackend-qt5=disabled
+      - -Dbackend-qt6=disabled
+      - -Dintrospection=false
+      - -Dvapi=false
+      - -Ddocs=false
+      - -Dtests=false
+    sources:
+      - type: archive
+        url: https://github.com/flatpak/libportal/releases/download/0.8.1/libportal-0.8.1.tar.xz
+        sha256: 281e54e4f8561125a65d20658f1462ab932b2b1258c376fed2137718441825ac
+
+  - name: opencv
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - '-DCMAKE_BUILD_TYPE=Release'
+      - '-DOPENCV_GENERATE_PKGCONFIG=ON'
+      - '-DBUILD_LIST=imgproc'
+    cleanup:
+      - /bin
+      - /share/opencv4
+    sources:
+      - type: archive
+        url: https://github.com/opencv/opencv/archive/4.10.0.tar.gz
+        sha256: b2171af5be6b26f7a06b1229948bbb2bdaa74fcf5cd097e0af6378fce50a6eb9
+      - type: archive
+        url: https://github.com/opencv/opencv_contrib/archive/4.10.0.tar.gz
+        sha256: 65597f8fb8dc2b876c1b45b928bbcc5f772ddbaf97539bf1b737623d0604cba1
+
+  - name: libXdamage
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://xorg.freedesktop.org/archive/individual/lib/libXdamage-1.1.6.tar.xz
+        sha256: 52733c1f5262fca35f64e7d5060c6fcd81a880ba8e1e65c9621cf0727afb5d11
+
+  - name: libXext
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://xorg.freedesktop.org/archive/individual/lib/libXext-1.3.6.tar.xz
+        sha256: edb59fa23994e405fdc5b400afdf5820ae6160b94f35e3dc3da4457a16e89753
+
+  - name: wemeet-wayland-screenshare
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: git
+        url: https://github.com/xuwd1/wemeet-wayland-screenshare.git
+
   - name: wemeet
     buildsystem: simple
     build-commands:
