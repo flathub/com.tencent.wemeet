@@ -1,7 +1,7 @@
 app-id: com.tencent.wemeet
-runtime: org.gnome.Platform
-runtime-version: "47"
-sdk: org.gnome.Sdk
+runtime: org.freedesktop.Platform
+runtime-version: "24.08"
+sdk: org.freedesktop.Sdk
 separate-locales: false
 rename-icon: wemeet
 rename-desktop-file: wemeet.desktop
@@ -30,8 +30,8 @@ modules:
   - name: libportal
     buildsystem: meson
     config-opts:
-      - -Dbackend-gtk3=disabled
-      - -Dbackend-gtk4=enabled
+      - -Dbackend-gtk3=enabled
+      - -Dbackend-gtk4=disabled
       - -Dbackend-qt5=disabled
       - -Dbackend-qt6=disabled
       - -Dintrospection=false
@@ -40,8 +40,13 @@ modules:
       - -Dtests=false
     sources:
       - type: archive
-        url: https://github.com/flatpak/libportal/releases/download/0.8.1/libportal-0.8.1.tar.xz
-        sha256: 281e54e4f8561125a65d20658f1462ab932b2b1258c376fed2137718441825ac
+        url: https://github.com/flatpak/libportal/archive/0.9.0.tar.gz
+        sha256: 0fdf42ca371eeb1213ed25ab0c5681cd51750eb9a3e04adcd6a8dc2af4f4d440
+        x-checker-data:
+          type: anitya
+          project-id: 230124
+          stable-only: true
+          url-template: https://github.com/flatpak/libportal/archive/$version.tar.gz
 
   - name: opencv
     buildsystem: cmake-ninja
@@ -57,9 +62,19 @@ modules:
       - type: archive
         url: https://github.com/opencv/opencv/archive/4.10.0.tar.gz
         sha256: b2171af5be6b26f7a06b1229948bbb2bdaa74fcf5cd097e0af6378fce50a6eb9
+        x-checker-data:
+          type: anitya
+          project-id: 6615
+          stable-only: true
+          url-template: https://github.com/opencv/opencv/archive/$version.tar.gz
       - type: archive
         url: https://github.com/opencv/opencv_contrib/archive/4.10.0.tar.gz
         sha256: 65597f8fb8dc2b876c1b45b928bbcc5f772ddbaf97539bf1b737623d0604cba1
+        x-checker-data:
+          type: anitya
+          project-id: 6615
+          stable-only: true
+          url-template: https://github.com/opencv/opencv_contrib/archive/$version.tar.gz
 
   - name: libXdamage
     buildsystem: autotools
@@ -67,6 +82,11 @@ modules:
       - type: archive
         url: https://xorg.freedesktop.org/archive/individual/lib/libXdamage-1.1.6.tar.xz
         sha256: 52733c1f5262fca35f64e7d5060c6fcd81a880ba8e1e65c9621cf0727afb5d11
+        x-checker-data:
+          type: anitya
+          project-id: 1771
+          stable-only: true
+          url-template: https://xorg.freedesktop.org/archive/individual/lib/libXdamage-$version.tar.xz
 
   - name: libXext
     buildsystem: autotools
@@ -74,6 +94,11 @@ modules:
       - type: archive
         url: https://xorg.freedesktop.org/archive/individual/lib/libXext-1.3.6.tar.xz
         sha256: edb59fa23994e405fdc5b400afdf5820ae6160b94f35e3dc3da4457a16e89753
+        x-checker-data:
+          type: anitya
+          project-id: 1774
+          stable-only: true
+          url-template: https://xorg.freedesktop.org/archive/individual/lib/libXext-$version.tar.xz
 
   - name: wemeet-wayland-screenshare
     buildsystem: cmake-ninja
@@ -83,6 +108,10 @@ modules:
       - type: git
         url: https://github.com/xuwd1/wemeet-wayland-screenshare.git
         commit: a1c8cc5a015a275256eef672f7df70a1e78e4c78
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/xuwd1/wemeet-wayland-screenshare/commits/master/branches-where-head
+          commit-query: .[0].commit.sha
 
   - name: wemeet
     buildsystem: simple
