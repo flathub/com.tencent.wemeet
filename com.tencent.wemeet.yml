@@ -107,7 +107,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/xuwd1/wemeet-wayland-screenshare.git
-        commit: 71195b3e4832df3e6a8051558250a9592d51a6b3
+        commit: ab226c63380c4233e2f490ba17e6ea8f393999e2
         x-checker-data:
           type: json
           url: https://api.github.com/repos/xuwd1/wemeet-wayland-screenshare/commits/master/branches-where-head
