@@ -137,8 +137,8 @@ modules:
       - type: extra-data
         filename: wemeet.deb
         only-arches: [aarch64]
-        url: https://updatecdn.meeting.qq.com/cos/73805834f20680c804310bd0e80f269d/TencentMeeting_0300000000_3.19.1.400_arm64_default.publish.deb
-        sha256: e44f9b9e0cb5110cf877d68ca83f93557e87bca4a3424964f3056bd5b36817c2
+        url: https://updatecdn.meeting.qq.com/cos/867a8a2e99a215dcd4f60fe049dbe6cf/TencentMeeting_0300000000_3.19.2.400_arm64_default.publish.officialwebsite.deb
+        sha256: 6af37e3c728a0b9f25302e70774c952c3d02b7bb1b6f806d5e3a2f8ac87450b5
         size: 145309964
         x-checker-data:
           type: json
