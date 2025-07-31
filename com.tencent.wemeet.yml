@@ -12,6 +12,7 @@ finish-args:
   - --socket=x11
   - --socket=pulseaudio
   - --device=all
+  - --filesystem=xdg-run/pipewire-0
   - --talk-name=org.gnome.Shell.Screencast
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
