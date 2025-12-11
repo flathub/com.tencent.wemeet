@@ -125,9 +125,9 @@ modules:
       - type: extra-data
         filename: wemeet.deb
         only-arches: [x86_64]
-        url: https://updatecdn.meeting.qq.com/cos/9cfd93b10ee81b2fc3ad26357f27ed13/TencentMeeting_0300000000_3.26.10.400_x86_64_default.publish.officialwebsite.deb
-        sha256: ee0378d269000ffd3f93413e6c135f88c718f98b4868b5b2705a08fa186b8e07
-        size: 197315640
+        url: https://updatecdn.meeting.qq.com/cos/72e0e0023e1d1e6d4123fba28821aea1/TencentMeeting_0300000000_3.26.10.401_x86_64_default.publish.officialwebsite.deb
+        sha256: 70f37b029209c0ef91be9813eebf6650c6cb9a00f7c718490158773e2fe6acaf
+        size: 197268516
         x-checker-data:
           type: json
           url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22linux%22,%22arch%22:%22x86_64%22,%22decorators%22:[%22deb%22]}]&nonce=123456789abcdefg
