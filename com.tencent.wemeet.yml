@@ -16,12 +16,6 @@ finish-args:
   - --talk-name=org.gnome.Shell.Screencast
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
-  - --env=XDG_SESSION_TYPE=x11
-  - --env=QT_QPA_PLATFORM=xcb
-  - --env=LD_PRELOAD=/app/lib/wemeet/libhook.so
-  - --unset-env=WAYLAND_DISPLAY
-  # Hidpi scale
-  - --env=QT_AUTO_SCREEN_SCALE_FACTOR=1
 cleanup:
   - /include
   - /lib/cmake
@@ -78,18 +72,6 @@ modules:
           project-id: 6615
           stable-only: true
           url-template: https://github.com/opencv/opencv_contrib/archive/$version.tar.gz
-
-  - name: wemeet-wayland-screenshare
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-    post-install:
-      - ln -Tsv /usr/lib/$(gcc --print-multiarch)/libXext.so.? /app/lib/libXext.so
-      - ln -Tsv /usr/lib/$(gcc --print-multiarch)/libXdamage.so.? /app/lib/libXdamage.so
-    sources:
-      - type: git
-        url: https://github.com/xuwd1/wemeet-wayland-screenshare.git
-        commit: ab226c63380c4233e2f490ba17e6ea8f393999e2
 
   - name: wemeet
     buildsystem: simple
