@@ -16,12 +16,6 @@ finish-args:
   - --talk-name=org.gnome.Shell.Screencast
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
-  - --env=XDG_SESSION_TYPE=x11
-  - --env=QT_QPA_PLATFORM=xcb
-  - --env=LD_PRELOAD=/app/lib/wemeet/libhook.so
-  - --unset-env=WAYLAND_DISPLAY
-  # Hidpi scale
-  - --env=QT_AUTO_SCREEN_SCALE_FACTOR=1
 cleanup:
   - /include
   - /lib/cmake
@@ -79,18 +73,6 @@ modules:
           stable-only: true
           url-template: https://github.com/opencv/opencv_contrib/archive/$version.tar.gz
 
-  - name: wemeet-wayland-screenshare
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-    post-install:
-      - ln -Tsv /usr/lib/$(gcc --print-multiarch)/libXext.so.? /app/lib/libXext.so
-      - ln -Tsv /usr/lib/$(gcc --print-multiarch)/libXdamage.so.? /app/lib/libXdamage.so
-    sources:
-      - type: git
-        url: https://github.com/xuwd1/wemeet-wayland-screenshare.git
-        commit: ab226c63380c4233e2f490ba17e6ea8f393999e2
-
   - name: wemeet
     buildsystem: simple
     build-commands:
@@ -138,11 +120,11 @@ modules:
       - type: extra-data
         filename: wemeet.deb
         only-arches: [aarch64]
-        url: https://updatecdn.meeting.qq.com/cos/e5f447f30343e27c49438db8d035ae23/TencentMeeting_0300000000_3.26.10.400_arm64_default.publish.officialwebsite.deb
-        sha256: 4a1c5c0f0c014e1c1ed9828dcbfe7e1e661c9e7a1d3e1acc68ec24c37813ab41
-        size: 180931120
+        url: https://updatecdn.meeting.qq.com/cos/c06d6bc4a3370dbfb2f43bbc6ff8969e/TencentMeeting_0300000000_3.26.10.401_arm64_default.publish.officialwebsite.deb
+        sha256: 5b9d04d5b9aa24b3c353b158d2a34a3e5875cfc03d133d4673e36b1d0841c202
+        size: 180672348
         x-checker-data:
           type: json
-          url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22linux%22,%22arch%22:%22aarch64%22,%22decorators%22:[%22deb%22]}]&nonce=123456789abcdefg
+          url: https://meeting.tencent.com/web-service/query-download-info?q=[{%22package-type%22:%22app%22,%22channel%22:%220300000000%22,%22platform%22:%22linux%22,%22arch%22:%22arm64%22,%22decorators%22:[%22deb%22]}]&nonce=123456789abcdefg
           version-query: .["info-list"][0].version
           url-query: .["info-list"][0].url
