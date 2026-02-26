@@ -1,6 +1,6 @@
 app-id: com.tencent.wemeet
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 separate-locales: false
 rename-icon: wemeet
@@ -10,6 +10,7 @@ finish-args:
   - --share=ipc
   - --share=network
   - --socket=x11
+  - --socket=wayland
   - --socket=pulseaudio
   - --device=all
   - --filesystem=xdg-run/pipewire-0
